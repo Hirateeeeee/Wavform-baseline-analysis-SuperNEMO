@@ -60,7 +60,7 @@ int calo_track_corresponder(int calo_column, int track_layer){
 
 int main() {
  gStyle->SetOptStat(0);
-  TFile *file = new TFile("/sps/nemo/scratch/golivier/aussois_tuto_data/bi207_run/snemo_run-902_udd.root", "READ");
+  TFile *file = new TFile("/sps/nemo/scratch/pli/aussois_tuto_data/bi207_run/snemo_run-902_udd.root", "READ");
   std::vector<std::vector<short>> *wave = new std::vector<std::vector<short>>;
   std::vector<int> *calo_wall   = new std::vector<int>;
   std::vector<int> *calo_side   = new std::vector<int>;

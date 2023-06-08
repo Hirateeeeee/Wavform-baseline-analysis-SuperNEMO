@@ -1,3 +1,7 @@
 
 The scripts runs with snemo_run-902_udd.root , which is a pre-calibrated data root file for a bi-207 run, the source root file
 can be found/access in /sps/nemo/scratch/pli/aussois_tuto_data/bi207_run/snemo_run-902_udd.root in CC-IN2P3
+
+
+The scripts was modified based on a root tutorial delivered by Guillaume Oliviero on the collabration meeting in January 2023,
+The README-goliver file is the original README file Guillaume wrote for the original tutorial.

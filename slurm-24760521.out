@@ -1,0 +1,169 @@
+****************************************************************
+*                      SLURM Batch System                      *
+*           IN2P3 Computing Centre, Villeurbanne FR            *
+****************************************************************
+* Date:                 Wed Mar 15 01:37:34 CET 2023
+* Job name:             baseline
+* Job id:               24760521
+* User:                 pli
+* Account:              nemo
+* Submit host:          cca009
+* Partition:            htc
+* Quality of service:   normal
+* Nodelist:             ccwslurm0168
+****************************************************************
+
+SuperNEMO Software profile #1
+=============================
+
+* Please type:
+
+  $ load_supernemo_setup_old
+
+  to activate old production software environment from your Bash shell
+  (no Falaise pro yet, obsoleted).
+
+
+* Please type:
+                                                                                                                              
+  $ load_supernemo_setup_pro
+
+  to activate production software environment from your Bash shell 
+  with only released versions (but SNFEE/devel and no Falaise pro yet).  
+
+* Please type:
+                                                                                            
+  $ load_supernemo_setup_new
+
+  to activate new software environment from your Bash shell 
+  with only brand new released versions (no Falaise yet).  
+
+  - SNCabling 1.1.0
+  - SNFEE 0.2.6-beta (2022-02-11)
+
+* Please type:
+                                                                                            
+  $ load_supernemo_setup_new_2022_04_07
+
+  to activate new software environment from your Bash shell 
+  with brand new released versions (no Falaise yet).  
+
+  - BxDecay0 1.1.0
+  - Bayeux 3.5.1
+  - SNCabling 1.1.0
+  - SNFEE 0.2.6 (2022-04-07)
+
+* Please type:
+                                                                                            
+  $ load_supernemo_setup_new_2022_05_05
+
+  to activate new software environment from your Bash shell 
+  with brand new released versions (no Falaise yet).  
+
+  - BxDecay0 1.1.0
+  - Bayeux 3.5.2    (2022-05-05)
+  - SNRS 1.1        (2022-05-05)
+  - SNCabling 1.1.1 (2022-05-12)
+  - SNFEE 0.3.0     (2022-05-12)
+
+* Please type:
+                                                                                            
+  $ load_supernemo_setup_new_2022_06_07
+
+  to activate new software environment from your Bash shell 
+  with brand new released versions (no Falaise yet).  
+
+  - BxDecay0 1.1.0
+  - Bayeux 3.5.3    (2022-06-07)
+  - SNRS 1.1        (2022-05-05)
+  - SNCabling 1.1.1 (2022-05-12)
+  - SNFEE 0.3.0     (2022-05-12)
+
+* Please type:
+
+  $ load_falaise_setup_dev
+
+    to activate Falaise/develop environment from your Bash shell
+    (implies 'load_supernemo_setup_pro' above)
+
+  $ load_falaise_setup_new_2022_05_12
+
+    load_supernemo_setup_new_2022_05_05  ( Bayeux == 3.5.2, SNRS == 1.1, ...)
+    load_falaise_develop_setup           ( Falaise >= 4.1.0 )
+
+  $ load_falaise_setup_new_2022_06_09
+
+    load_supernemo_setup_new_2022_06_09  ( Bayeux == 3.5.3, SNRS == 1.1, ...)
+    load_falaise_develop_simrc_setup     ( Falaise >= 4.1.0 + SimRC for tests)
+
+[info] Loading BxDecay0 1.1.0 setup script...
+[info] Loading Bayeux 3.5.0 setup script...
+[info] Loading Bayeux 3.5.1 setup script...
+[info] Loading Bayeux 3.5.2 setup script...
+[info] Loading Bayeux 3.5.3 setup script...
+[info] Loading SNCabling 1.1.0 setup script...
+[info] Loading SNCabling 1.1.1 setup script...
+[info] Loading SNRS 1.1 setup script...
+[info] Loading SNFEE 0.2.5 setup script...
+[info] Loading SNFEE 0.2.6-redb setup script...
+[info] Please type 'load_snfee_0_2_6_beta_setup' to activate SNFEE '0.2.6-beta' !
+[info] Loading SNFEE 0.2.6 setup script...
+[info] Please type 'load_snfee_0_2_6_setup' to activate SNFEE '0.2.6' !
+[info] Loading SNFEE 0.3.0 setup script...
+[info] Please type 'load_snfee_0_3_0_setup' to activate SNFEE '' !
+[info] Loading Falaise develop (< 4.1) setup script...
+[info] Loading Falaise develop (>= 4.1) setup script with SimRC... (NEW: 2022-06-09)
+[info] Loading Falaise (develop >= 4.1.0) software setup...
+[info] Loading new SuperNEMO software setup (2022_05_05)...
+[info] Loading base 'dev' SuperNEMO software setup...
+[info] Cleared PATH start from : /sps/nemo/sw/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[info] Cleared LD_LIBRARY_PATH start from : 
+[info] Cleared PKG_CONFIG_PATH start from : 
+[info] Adding Qsub in PATH...
+[info] Setting Git 2.19.1...
+[info] Effective PATH is now : /pbs/software/centos-7-x86_64/git/2.19.1/bin:/opt/sge/bin/lx-amd64:/sps/nemo/sw/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[info] load_gcc_setup: GCC version 7.3.0 is setup from '/pbs/software/centos-7-x86_64/gcc'.
+[info] Updated PATH : /pbs/software/centos-7-x86_64/gcc/7.3.0/bin:/pbs/software/centos-7-x86_64/git/2.19.1/bin:/opt/sge/bin/lx-amd64:/sps/nemo/sw/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[info] Updated LD_LIBRARY_PATH : /pbs/software/centos-7-x86_64/gcc/7.3.0/lib64:/pbs/software/centos-7-x86_64/gcc/7.3.0/lib
+[info] load_ninja_setup: Ninja version 1.10.0 is setup from '/pbs/software/centos-7-x86_64/ninja'.
+[info] Updated PATH : /pbs/software/centos-7-x86_64/ninja/1.10.0/bin:/pbs/software/centos-7-x86_64/gcc/7.3.0/bin:/pbs/software/centos-7-x86_64/git/2.19.1/bin:/opt/sge/bin/lx-amd64:/sps/nemo/sw/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[info] Updated LD_LIBRARY_PATH : /pbs/software/centos-7-x86_64/gcc/7.3.0/lib64:/pbs/software/centos-7-x86_64/gcc/7.3.0/lib
+[info] load_cmake_3_20_2_setup: CMake version 3.20.2 is setup from '/pbs/software/centos-7-x86_64/cmake'.
+[info] Updated PATH : /pbs/software/centos-7-x86_64/cmake/3.20.2/bin:/pbs/software/centos-7-x86_64/ninja/1.10.0/bin:/pbs/software/centos-7-x86_64/gcc/7.3.0/bin:/pbs/software/centos-7-x86_64/git/2.19.1/bin:/opt/sge/bin/lx-amd64:/sps/nemo/sw/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[info] Updated LD_LIBRARY_PATH : /pbs/software/centos-7-x86_64/gcc/7.3.0/lib64:/pbs/software/centos-7-x86_64/gcc/7.3.0/lib
+[info] load_python_setup: PYTHON version 2.7.15 is setup from '/pbs/software/centos-7-x86_64/python'.
+[info] Updated PATH : /pbs/software/centos-7-x86_64/python/2.7.15/bin:/pbs/software/centos-7-x86_64/cmake/3.20.2/bin:/pbs/software/centos-7-x86_64/ninja/1.10.0/bin:/pbs/software/centos-7-x86_64/gcc/7.3.0/bin:/pbs/software/centos-7-x86_64/git/2.19.1/bin:/opt/sge/bin/lx-amd64:/sps/nemo/sw/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[info] Updated LD_LIBRARY_PATH : /pbs/software/centos-7-x86_64/python/2.7.15/lib:/pbs/software/centos-7-x86_64/gcc/7.3.0/lib64:/pbs/software/centos-7-x86_64/gcc/7.3.0/lib
+[info] Updated PKG_CONFIG_PATH : /pbs/software/centos-7-x86_64/python/2.7.15/lib/pkgconfig
+[info] load_gnuplot_setup: Gnuplot version 5.2.3 is setup from '/pbs/software/centos-7-x86_64/gnuplot'.
+[info] Updated PATH : /pbs/software/centos-7-x86_64/gnuplot/5.2.3/bin:/pbs/software/centos-7-x86_64/python/2.7.15/bin:/pbs/software/centos-7-x86_64/cmake/3.20.2/bin:/pbs/software/centos-7-x86_64/ninja/1.10.0/bin:/pbs/software/centos-7-x86_64/gcc/7.3.0/bin:/pbs/software/centos-7-x86_64/git/2.19.1/bin:/opt/sge/bin/lx-amd64:/sps/nemo/sw/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[info] Updated LD_LIBRARY_PATH : /pbs/software/centos-7-x86_64/gnuplot/5.2.3/lib:/pbs/software/centos-7-x86_64/python/2.7.15/lib:/pbs/software/centos-7-x86_64/gcc/7.3.0/lib64:/pbs/software/centos-7-x86_64/gcc/7.3.0/lib
+[info] BX_INSTALL_BASE_DIR is already defined: '/sps/nemo/sw/BxCppDev/opt'
+[warning] boost_1_71_0_setup: BOOST version 1.71.0 is already setup !
+[warning] load_camp_0_8_4_setup: CAMP version 0.8.4 is already setup !
+[warning] load_gsl_2_4_setup: GSL version 2.4 is already setup !
+[warning] load_clhep_2_1_3_1_setup: CLHEP version 2.1.3.1 is already setup !
+[warning] load_root_6_16_00_setup: ROOT version 6.16.00 is already setup !
+[warning] load_g4datasets_9_6_4_setup: Geant4 datasets version 9.6.4 is already setup !
+[warning] load_xercesc_3_2_3_setup: XERCESC version 3.2.3 is already setup !
+[warning] load_doxygen_1_8_18_setup: DOXYGEN version 1.8.18 is already setup !
+[warning] load_geant4_9_6_4_setup: GEANT4 version 9.6.4 is already setup !
+[info] load_bxdecay0_1_1_0_setup: Path to the BxDecay0 'DBD gA' dataset is defined.
+[warning] load_bxdecay0_1_1_0_setup: BxDecay0 version 1.1.0 is already setup !
+[warning] bayeux_3_5_2_setup: Bayeux version 3.5.2 is already setup !
+[warning] snrs_1_1_setup: SNRS version 1.1 is already setup !
+[warning] load_sncabling_1_1_1_setup: SNCabling version 1.1.1 is already setup !
+[warning] load_snfee_pro_setup: SNFEE version 0.3.0 is already setup !
+[warning] load_falaise_develop_setup: Falaise version develop is already setup !
+/var/spool/slurmd/job24760521/slurm_script: line 9: /sps/nemo/scratch/pli/aussois_tuto_data/root_macro/marco.exe: No such file or directory
+****************************************************************
+*                      SLURM Batch System                      *
+*           IN2P3 Computing Centre, Villeurbanne FR            *
+****************************************************************
+Date: Wed Mar 15 01:37:44 CET 2023
+Job informations can be found using these commands:
+Accounting:
+sacct -j 24760521
+Efficiency:
+seff 24760521
+****************************************************************

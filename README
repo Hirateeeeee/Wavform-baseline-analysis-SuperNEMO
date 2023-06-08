@@ -5,3 +5,10 @@ can be found/access in /sps/nemo/scratch/pli/aussois_tuto_data/bi207_run/snemo_r
 
 The scripts was modified based on a root tutorial delivered by Guillaume Oliviero on the collabration meeting in January 2023,
 The README-goliver file is the original README file Guillaume wrote for the original tutorial.
+
+
+
+
+To use the scripts, first modify macro.C, then run command make to complie it, then run ./macro.exe to execute the script.
+
+some running example pictures are put in the running results folder

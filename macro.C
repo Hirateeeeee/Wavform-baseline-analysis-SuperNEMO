@@ -103,7 +103,7 @@ int main() {
   tree->SetBranchStatus("digicalo.row",1);
   tree->SetBranchAddress("digicalo.row", &calo_row);
   tree->SetBranchStatus("digicalo.charge",1);
-  tree->SetBranchAddress("digicalo.charge", &calo_charge);
+  tree->SetBranchAddress("digicalo.charge", &calo_charge)
   tree->SetBranchStatus("digicalo.peakamplitude",1);
   tree->SetBranchAddress("digicalo.peakamplitude", &calo_ampl);
   /*
@@ -126,7 +126,7 @@ int main() {
   TH2D *x_y = new TH2D("x=y","x=y",1000,0,30000,1000,0,30000);
 
 
-  for (int z=0; z <30000; z++)
+  for (int z=0; z <30000; z++)    ## this draw a diagonal line of x=y on the diagram
   {
     int x = z;
     int y = z;
@@ -135,24 +135,24 @@ int main() {
   } 
 
 
-  for (int i = 0; i < tree->GetEntries() - 1; i++) {
+  for (int i = 0; i < tree->GetEntries() - 1; i++) {    ## this take in data in a event loop, and output a message once it take in integer mutiple of 100 events
     tree->GetEntry(i);
     
     if (i%100==0) std::cout<<"Event "<<i<<std::endl;
     if(wave->size()<2) 
       {
-        std::cout<<"Skipping event "<<i<<std::endl;
+        std::cout<<"Skipping event "<<i<<std::endl;    ## this ensure any broken event with incomplete waveform data get deleted before any analysis happening, prevent error
         continue;
       }
   
-    for (int l=0; l < wave->at(1).size();l++){
+    for (int l=0; l < wave->at(1).size();l++){    ##this manually calculate the waveform base line
       std::vector<int> samples;
       
       int ave;
 
 
-      for (int k=32; k<127; k++){
-        samples.insert(samples.end(),wave->at(1).at(k));
+      for (int k=32; k<127; k++){ ## to change the blocks you need for calculating the baseline, change the number here
+        samples.insert(samples.end(),wave->at(1).at(k)); ## for example, 32 and 127 here means it take average between 32(block 2) and 127(block 9)
         int sum = accumulate(samples.begin(),samples.end(),0);
         ave = sum/samples.size();
         
@@ -161,19 +161,19 @@ int main() {
       }
 
       
-      waveform -> SetBinContent(l, wave->at(1).at(l));
+      waveform -> SetBinContent(l, wave->at(1).at(l)); ##set both the wave and the manually calculated baseline into the graph
       reference -> SetBinContent(l,ave);
 
       
     
     }
   
-  int waveform_integral = reference -> Integral() - waveform -> Integral();
+  int waveform_integral = reference -> Integral() - waveform -> Integral(); #integral to get the area under the waveform
   //double fraction = calo_charge->at(1)/waveform_integral;
   double subtract = -1 * calo_charge->at(1) - waveform_integral;
   
   
-  if ( abs(waveform_integral) < 2500 && abs(calo_charge->at(1)) < 2500)
+  if ( abs(waveform_integral) < 2500 && abs(calo_charge->at(1)) < 2500)   ##filter out the trivial events where nothing is happening
   {
   //std::cout<<"small event"<<i<<std::endl;
   continue;
@@ -181,13 +181,13 @@ int main() {
   
   }
 
-  if ( abs(waveform_integral) - abs(calo_charge->at(1)) == 0)
+  if ( abs(waveform_integral) - abs(calo_charge->at(1)) == 0)  ## find the events that have manually baseline exactly equal to the automatically calculated baseline
   {
     std::cout << "equal event" << i << std::endl;
     continue;
   }
 
-  if ( abs(waveform_integral) - abs(calo_charge->at(1)) > 1000)
+  if ( abs(waveform_integral) - abs(calo_charge->at(1)) > 1000) ## find the event that have a large difference bewteen the manual calculation and automatic calculation
   {
     std::cout << "manual intergral greater than FEB with more than 1000" << i << std::endl;
     std::cout << "difference is " << abs(waveform_integral) - abs(calo_charge->at(1)) << std::endl;
@@ -209,11 +209,11 @@ int main() {
 
 
 
-
-  //std::cout << "--------- event number " << i << "---------" << std::endl;
+ ######create canvas and print everything out####
+  //std::cout << "--------- event number " << i << "---------" << std::endl; 
 /*
-  std::cout << "Calo charge: " << calo_charge->at(1) << std::endl;
-  std::cout << "Integal of waveform is: " <<  waveform -> Integral() << std::endl;
+  std::cout << "Calo charge: " << calo_charge->at(1) << std::endl; 
+  std::cout << "Integal of waveform is: " <<  waveform -> Integral() << std::endl;  
   std::cout << "Integal of reference is: " << reference -> Integral() << std::endl;
   std::cout << "The difference is: " << reference -> Integral() - waveform -> Integral() << std::endl;
   std::cout << "The waveform integral is: " << waveform_integral << std::endl;
@@ -249,8 +249,8 @@ int main() {
   return 0;
 
 
-/*
-  tree->GetEntry(18183);
+/*    ### below are the code for retrieve information from a single event
+  tree->GetEntry(18183); ## change the event number here to get information from the event of your interest
   int ave;
   double chi_square;
   
@@ -323,7 +323,7 @@ int main() {
     
     }
   
-  TCanvas *canv=new TCanvas("canv","Elvis's plot",900,600);
+  TCanvas *canv=new TCanvas("canv","Elvis's plot",900,600); ## output everything and calculate chi square
   waveform->GetYaxis()->SetRangeUser(3000,3700);
   waveform -> Draw();
   reference -> Draw("same");
@@ -347,7 +347,7 @@ int main() {
 
 
 
-/*
+/* ## same code to extract a singular event
   tree->GetEntry(18232);
   int ave;
   double chi_square;
@@ -443,74 +443,8 @@ int main() {
 
   return 0;
 
-
-/*
-  for (int i = 0; i < tree->GetEntries() - 1; i++) {      //loop on event number
-    tree->GetEntry(i);
-    
-
-
-    for (int k = 0; k < calo_nohits; k++) {      //k : loop on calo hit number
-      int om_num = calo_side->at(k)*260 + calo_column->at(k)*13 + calo_row->at(k);
-      
-      if (-calo_ampl->at(k) > 200 && om_num < 520) {      // condition to cut small charge and keep only MW OM
-    
-       if (calo_side->at(k)==1){
-        calo_full.Fill(calo_row->at(k), calo_column->at(k));            //TH2 on amplitude and charge spectra without cut
-					}
-
-       if (calo_side->at(k)==0){
-        calo_full.Fill(calo_row->at(k),-calo_column->at(k));            //TH2 on amplitude and charge spectra without cut
-
-                                                }
-
-        int layer_tab[9]{0};
-        int layer_sum = 0;
-        int last_layer = 0;
-        for (int j = 0; j < tracker_nohits; j++) {        //j  loop on tracker hit number
-
-          if (layer_tab[tracker_layer->at(j)] == 0 && tracker_side->at(j) == calo_side->at(k)) {
-            layer_tab[tracker_layer->at(j)] = 1;             // loop to count the number of layer with a trace on the same side than the calo hit
-            if (tracker_layer->at(j) == 8) {
-              last_layer = j;                               // to compare the layer with calo column
-            }
-          }
-        }
-
-        for (size_t layer_num = 0; layer_num < 9; layer_num++) {
-          layer_sum += layer_tab[layer_num];
-        }
-
-        if(layer_sum > 7){                                  // at least 7 layer between the source and the calorimeter
-          if (layer_tab[0] == 1 || layer_tab[1] == 1) {                       //at least a track hit near the source foil
-
-            if(calo_track_corresponder(calo_column->at(k), tracker_column->at(last_layer)) == 1){     // condition between calo column and tracker layer
-       if (calo_side->at(k)==1){
-        calo.Fill(calo_row->at(k), calo_column->at(k));            //TH2 on amplitude and charge spectra without cut
-                                                }
-
-       if (calo_side->at(k)==0){
-        calo.Fill(calo_row->at(k),-calo_column->at(k));            //TH2 on amplitude and charge spectra without cut
-                                                }
-              counter++;
-            }
-          }
-        }
-        layer_sum = 0;
-      }
-    }
-  }
-
-  std::cout << "Number of events: " << counter << std::endl;
-  TFile *newfile = new TFile("output_from_macro.root", "RECREATE");
-  newfile->cd();
-  calo_full.Write();
-  calo.Write();
-  newfile->Close();
-  std::cout << "End of macro.C" << std::endl;
-  return 0;
-
 */
+
 }
 
 

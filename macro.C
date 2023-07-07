@@ -135,24 +135,24 @@ int main() {
   } 
 
 
-  for (int i = 0; i < tree->GetEntries() - 1; i++) {    ## this take in data in a event loop, and output a message once it take in integer mutiple of 100 events
+  for (int i = 0; i < tree->GetEntries() - 1; i++) {    // this take in data in a event loop, and output a message once it take in integer mutiple of 100 events
     tree->GetEntry(i);
     
     if (i%100==0) std::cout<<"Event "<<i<<std::endl;
     if(wave->size()<2) 
       {
-        std::cout<<"Skipping event "<<i<<std::endl;    ## this ensure any broken event with incomplete waveform data get deleted before any analysis happening, prevent error
+        std::cout<<"Skipping event "<<i<<std::endl;    // this ensure any broken event with incomplete waveform data get deleted before any analysis happening, prevent error
         continue;
       }
   
-    for (int l=0; l < wave->at(1).size();l++){    ##this manually calculate the waveform base line
+    for (int l=0; l < wave->at(1).size();l++){    //this manually calculate the waveform base line
       std::vector<int> samples;
       
       int ave;
 
 
-      for (int k=32; k<127; k++){ ## to change the blocks you need for calculating the baseline, change the number here
-        samples.insert(samples.end(),wave->at(1).at(k)); ## for example, 32 and 127 here means it take average between 32(block 2) and 127(block 9)
+      for (int k=32; k<127; k++){ //## to change the blocks you need for calculating the baseline, change the number here
+        samples.insert(samples.end(),wave->at(1).at(k)); //## for example, 32 and 127 here means it take average between 32(block 2) and 127(block 9)
         int sum = accumulate(samples.begin(),samples.end(),0);
         ave = sum/samples.size();
         
@@ -161,7 +161,7 @@ int main() {
       }
 
       
-      waveform -> SetBinContent(l, wave->at(1).at(l)); ##set both the wave and the manually calculated baseline into the graph
+      waveform -> SetBinContent(l, wave->at(1).at(l)); //##set both the wave and the manually calculated baseline into the graph
       reference -> SetBinContent(l,ave);
 
       
@@ -173,7 +173,7 @@ int main() {
   double subtract = -1 * calo_charge->at(1) - waveform_integral;
   
   
-  if ( abs(waveform_integral) < 2500 && abs(calo_charge->at(1)) < 2500)   ##filter out the trivial events where nothing is happening
+  if ( abs(waveform_integral) < 2500 && abs(calo_charge->at(1)) < 2500)   //##filter out the trivial events where nothing is happening
   {
   //std::cout<<"small event"<<i<<std::endl;
   continue;
@@ -181,13 +181,13 @@ int main() {
   
   }
 
-  if ( abs(waveform_integral) - abs(calo_charge->at(1)) == 0)  ## find the events that have manually baseline exactly equal to the automatically calculated baseline
+  if ( abs(waveform_integral) - abs(calo_charge->at(1)) == 0)  //## find the events that have manually baseline exactly equal to the automatically calculated baseline
   {
     std::cout << "equal event" << i << std::endl;
     continue;
   }
 
-  if ( abs(waveform_integral) - abs(calo_charge->at(1)) > 1000) ## find the event that have a large difference bewteen the manual calculation and automatic calculation
+  if ( abs(waveform_integral) - abs(calo_charge->at(1)) > 1000) //## find the event that have a large difference bewteen the manual calculation and automatic calculation
   {
     std::cout << "manual intergral greater than FEB with more than 1000" << i << std::endl;
     std::cout << "difference is " << abs(waveform_integral) - abs(calo_charge->at(1)) << std::endl;
@@ -209,7 +209,7 @@ int main() {
 
 
 
- ######create canvas and print everything out####
+ //######create canvas and print everything out####
   //std::cout << "--------- event number " << i << "---------" << std::endl; 
 /*
   std::cout << "Calo charge: " << calo_charge->at(1) << std::endl; 
@@ -249,7 +249,7 @@ int main() {
   return 0;
 
 
-/*    ### below are the code for retrieve information from a single event
+/*    //### below are the code for retrieve information from a single event
   tree->GetEntry(18183); ## change the event number here to get information from the event of your interest
   int ave;
   double chi_square;
@@ -347,7 +347,7 @@ int main() {
 
 
 
-/* ## same code to extract a singular event
+/* //## same code to extract a singular event
   tree->GetEntry(18232);
   int ave;
   double chi_square;
